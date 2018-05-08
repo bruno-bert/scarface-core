@@ -1,0 +1,74 @@
+{
+    "$schema": "http://json-schema.org/draft-06/schema",
+  
+    "info": {
+      "title": "Your App Title here",
+      "description": "Your App description here",
+      "author": "your name here",
+      "contact": {
+        "email": "your email here"
+      },
+      "version" : "1.0.0",
+      "license": {
+        "name": "Your License type here",
+        "url": "The url of License Terms here"
+      }
+    },
+  
+    "appconfig": {
+        
+      "name": "TodoList",
+  
+      "dbConnection": {
+        "client": "mssql",
+        "host": "(localdb)\\\\MSSQLLocalDB",
+        "database": "test",
+        "port": "1433",
+        "trustedConnection": "true",
+        "pooling": "true",
+        "userId" : "test",
+        "password" : "test"
+      }
+      
+    },
+
+    "paths" : [],
+  
+    "appmodel": {
+      "type": "object",
+      "properties": {
+        "tasks": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/task" }
+        }
+      },
+  
+      "definitions": {
+        "Assignee": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "email": { "type": "string" }
+          }
+        },
+  
+        "Task": {
+          "type": "object",
+          "required": ["description"],
+          "properties": {
+            "description": {
+              "type": "string",
+              "minLength": "10",
+              "maxLength": "50"
+            },
+  
+            "assignees": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/Assignee" }
+            }
+          }
+        }
+      }
+    }
+  }
+  
